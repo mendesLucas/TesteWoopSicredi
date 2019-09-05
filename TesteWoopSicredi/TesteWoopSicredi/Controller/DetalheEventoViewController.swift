@@ -23,12 +23,15 @@ class DetalheEventoViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let play = UIBarButtonItem(image: #imageLiteral(resourceName: "shareIcon"), style: .plain, target: self, action: #selector(compartilharTapped))
-        navigationItem.rightBarButtonItems = [play]
+        //Cria botão para realizar o compartilhamento.
+        let btnShare = UIBarButtonItem(image: #imageLiteral(resourceName: "shareIcon"), style: .plain, target: self, action: #selector(compartilharTapped))
+        //add botão na navigationBar
+        navigationItem.rightBarButtonItems = [btnShare]
 
         carregaTela()
     }
     
+    //Metodo de compartilhar evento
     @objc func compartilharTapped() {
         
         if (self.imgEvento.image!.size.equalTo(CGSize.zero)) {
@@ -53,6 +56,7 @@ class DetalheEventoViewController: UIViewController, CLLocationManagerDelegate {
         centralizarLocal()
     }
     
+    //Metodo carregar campos da tela
     func carregaTela() {
         
         if let idEvento = self.eventoSelecionado?.id {
@@ -78,6 +82,7 @@ class DetalheEventoViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    //Inicializa mapa
     func carregaMap(){
         
         gerenciadorLocalizacao.delegate = self
@@ -91,6 +96,7 @@ class DetalheEventoViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     
+    //Configura posição desejada no mapa
     private func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         manager.stopUpdatingLocation()
@@ -102,12 +108,14 @@ class DetalheEventoViewController: UIViewController, CLLocationManagerDelegate {
         viewMap.setRegion(region, animated: true)
     }
     
+    //configura o zoom para posicionar a localização no mapa
     func centralizarLocal(){
         let coordenadas = CLLocationCoordinate2D(latitude: anotacao.coordinate.latitude, longitude: anotacao.coordinate.longitude)
         let regiao = MKCoordinateRegionMakeWithDistance( coordenadas, 200, 200)
         viewMap.setRegion(regiao, animated: true)
     }
     
+    //busca imagem do evento com URL
     func loadImageFromUrl(url: String, view: UIImageView){
         if view.image == nil {
             
@@ -130,13 +138,16 @@ class DetalheEventoViewController: UIViewController, CLLocationManagerDelegate {
         realizarCheckIn()
     }
     
+    //Metodo para realizar o Check in
     func realizarCheckIn() {
         
         do {
             let urlString = "http://5b840ba5db24a100142dcd8c.mockapi.io/api/events"
             if self.eventoSelecionado!.pessoas.count > 0 {
+                //chama o metodo de post check in
                 let retorno : String = WebServiceHelper.enviaPost(urlString, pessoa: (self.eventoSelecionado?.pessoas[0])!)
                 
+                //caso retorno 200, operação realizada com sucesso.
                 if(retorno == "200"){
                     let alert = UIAlertController(title: "Check-in", message: "Check-in realizado com sucesso!",         preferredStyle: UIAlertControllerStyle.alert)
                     

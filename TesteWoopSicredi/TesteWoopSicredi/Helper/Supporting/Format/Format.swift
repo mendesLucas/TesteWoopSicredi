@@ -10,6 +10,7 @@ import UIKit
 
 extension Double {
     
+    // MARK: - Formata Preço
     func priceFormat() -> String {
         let nf = NumberFormatter()
         nf.numberStyle = .decimal

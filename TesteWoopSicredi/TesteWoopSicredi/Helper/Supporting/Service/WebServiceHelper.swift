@@ -10,6 +10,7 @@ import UIKit
 
 class WebServiceHelper: NSObject {
     
+    //metodo generico para realizar o GET de serviços
     static func getServiceUrl(_ service : String) -> AnyObject! {
         
         let escapedURLString = service.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
@@ -23,6 +24,7 @@ class WebServiceHelper: NSObject {
         
         var erro: Error? = nil
         var responseData: Data?
+        //#gotResp: semáforo para retorno, simula um retorno sincrono
         var gotResp = false
         
         let task = URLSession.shared.dataTask(with: requestURL as URLRequest) { data, response, error -> Void in
@@ -33,6 +35,7 @@ class WebServiceHelper: NSObject {
         }
         task.resume()
         
+        //aguarda o retorno para liberar
         while !gotResp {
         }
         
@@ -70,9 +73,11 @@ class WebServiceHelper: NSObject {
         
         var erro: Error? = nil
         var responseData: Data?
+        //#gotResp: semáforo para retorno, simula um retorno sincrono
         var gotResp = false
         
         do {
+            //envia post assincrono
             let task = URLSession.shared.dataTask(with: requestURL as URLRequest) { data, response, error -> Void in
                 
                 erro = error
@@ -81,6 +86,7 @@ class WebServiceHelper: NSObject {
             }
             task.resume()
             
+            //aguarda o retorno para liberar
             while !gotResp {
             }
             
@@ -106,6 +112,7 @@ class WebServiceHelper: NSObject {
     var isSucess: Bool = false
     var msgException: String! = nil
     
+    //metodo para mostar Json do Check in
     static func jsonDataPost(_ pessoa:Pessoa) -> Data! {
         
         let keys = NSMutableArray()
@@ -117,6 +124,7 @@ class WebServiceHelper: NSObject {
         keys.add("name")
         values.add(pessoa.name)
         
+        //nao recebo e-mail da API
         keys.add("email")
         values.add("")
         

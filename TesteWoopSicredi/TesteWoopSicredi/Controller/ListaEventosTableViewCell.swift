@@ -24,6 +24,7 @@ class ListaEventosTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    //Busca imagens com URL
     func loadImageFromUrl(url: String, view: UIImageView){
         if view.image == nil {
         
@@ -43,6 +44,7 @@ class ListaEventosTableViewCell: UITableViewCell {
         }
     }
     
+    //limpa o cash de imagens da construção da TableView.
     override func prepareForReuse() {
         super.prepareForReuse()
         self.imgEvento.image = nil

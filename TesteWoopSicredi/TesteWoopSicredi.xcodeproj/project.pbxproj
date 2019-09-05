@@ -107,7 +107,7 @@
 			children = (
 				1A36B1D7231EC40C00910BB4 /* Helper */,
 				1A36B1CF231EACEE00910BB4 /* Model */,
-				1A36B1CE231EACE300910BB4 /* ViewController */,
+				1A36B1CE231EACE300910BB4 /* Controller */,
 				1A36B1BE231EA9AE00910BB4 /* AppDelegate.swift */,
 				1A36B1C2231EA9AE00910BB4 /* Main.storyboard */,
 				1A36B1C5231EA9AF00910BB4 /* LaunchScreen.storyboard */,
@@ -117,14 +117,14 @@
 			path = TesteWoopSicredi;
 			sourceTree = "<group>";
 		};
-		1A36B1CE231EACE300910BB4 /* ViewController */ = {
+		1A36B1CE231EACE300910BB4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				1A36B1DA231ED1EE00910BB4 /* ListaEventosTableViewCell.swift */,
 				1A2D70F4231EE8E4003568A4 /* ListaEventosTableViewController.swift */,
 				1A2D70FB231F25CF003568A4 /* DetalheEventoViewController.swift */,
 			);
-			path = ViewController;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		1A36B1CF231EACEE00910BB4 /* Model */ = {
