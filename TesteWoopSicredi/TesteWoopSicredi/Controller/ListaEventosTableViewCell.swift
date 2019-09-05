@@ -13,6 +13,7 @@ class ListaEventosTableViewCell: UITableViewCell {
     
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblPreco: UILabel!
+    @IBOutlet weak var lblPrecoLiquido: UILabel!
     @IBOutlet weak var imgEvento: UIImageView!
     
     override func awakeFromNib() {

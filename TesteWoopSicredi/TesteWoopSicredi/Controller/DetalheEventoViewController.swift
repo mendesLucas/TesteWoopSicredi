@@ -66,6 +66,15 @@ class DetalheEventoViewController: UIViewController, CLLocationManagerDelegate {
                 
                 self.lblTitle.text = evento.titulo
                 self.lblPreco.text = evento.valor.priceFormat()
+                
+                //caso tenha desconto, aplica no preço
+                if evento.cupons.count > 0 {
+                    if evento.cupons[0].desconto > 0.0{
+                        self.lblPreco.text = aplicaDesconto(preco: evento.valor, desconto: evento.cupons[0].desconto).priceFormat()
+                    }
+                }
+                
+                //busca imagem do evento com a URL
                 self.loadImageFromUrl(url: evento.urlImagem, view: self.imgEvento)
                 self.txtViewDescricao.text = evento.descricao
                 carregaMap()
@@ -80,6 +89,14 @@ class DetalheEventoViewController: UIViewController, CLLocationManagerDelegate {
                 self.viewMap.addAnnotation( anotacao )
             }
         }
+    }
+    
+    // MARK: - Aplica Desconto
+    func aplicaDesconto(preco: Double, desconto: Double) -> Double {
+        
+        var valorLiquido: Double = preco
+        valorLiquido = valorLiquido - valorLiquido * desconto / 100
+        return valorLiquido
     }
     
     //Inicializa mapa

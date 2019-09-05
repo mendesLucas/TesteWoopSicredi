@@ -35,7 +35,7 @@ class ListaEventosTableViewController: UITableViewController {
         }
     }
 
-    // MARK: - Table view data source
+    // MARK: - Table view data source / delegate
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -52,6 +52,22 @@ class ListaEventosTableViewController: UITableViewController {
         cell.lblTitle?.text = evento.titulo
         //Formata preço
         cell.lblPreco?.text = evento.valor.priceFormat()
+        //caso tenha desconto, aplica no preço
+        if evento.cupons.count > 0 {
+            if evento.cupons[0].desconto > 0.0{
+                
+                cell.lblPreco.attributedText = NSAttributedString(string: evento.valor.priceFormat(), attributes:
+                    [NSAttributedStringKey.strikethroughStyle: NSUnderlineStyle.styleSingle.rawValue])
+                
+                cell.lblPrecoLiquido.text = aplicaDesconto(preco: evento.valor, desconto: evento.cupons[0].desconto).priceFormat()
+            }
+            else{
+                cell.lblPrecoLiquido.text = ""
+            }
+        }
+        else{
+            cell.lblPrecoLiquido.text = ""
+        }
         cell.loadImageFromUrl(url: evento.urlImagem, view: cell.imgEvento)
         return cell
     }
@@ -59,6 +75,14 @@ class ListaEventosTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.eventoSelecionado = self.eventos[indexPath.row]
         self.performSegue(withIdentifier: "ShowDetalhe", sender: self)
+    }
+    
+    // MARK: - Aplica Desconto
+    func aplicaDesconto(preco: Double, desconto: Double) -> Double {
+        
+        var valorLiquido: Double = preco
+        valorLiquido = valorLiquido - valorLiquido * desconto / 100
+        return valorLiquido
     }
     
     // MARK: - Navigation

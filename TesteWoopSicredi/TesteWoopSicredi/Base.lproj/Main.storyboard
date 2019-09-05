@@ -44,13 +44,22 @@
                                                 <constraint firstAttribute="width" constant="60" id="i8H-WA-A61"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zi6-LR-Cph">
-                                            <rect key="frame" x="84" y="44" width="35.5" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zi6-LR-Cph">
+                                            <rect key="frame" x="84" y="44" width="70" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="Lqg-hT-iO2"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCc-ql-INv">
+                                            <rect key="frame" x="84" y="63" width="70" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="N02-Pu-OPC"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -63,7 +72,9 @@
                                         <constraint firstItem="fyM-oE-K79" firstAttribute="centerY" secondItem="T5R-uI-ToZ" secondAttribute="centerY" id="LQX-Pj-GoR"/>
                                         <constraint firstItem="fyM-oE-K79" firstAttribute="centerY" secondItem="T5R-uI-ToZ" secondAttribute="centerY" id="Qat-ef-Ah0"/>
                                         <constraint firstItem="fyM-oE-K79" firstAttribute="leading" secondItem="T5R-uI-ToZ" secondAttribute="leading" constant="9" id="R92-7c-z5u"/>
+                                        <constraint firstItem="lCc-ql-INv" firstAttribute="top" secondItem="Zfq-jX-zdM" secondAttribute="bottom" constant="16" id="S6N-si-8uz"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="zi6-LR-Cph" secondAttribute="trailing" constant="20" symbolic="YES" id="TYR-gg-3mh"/>
+                                        <constraint firstItem="zi6-LR-Cph" firstAttribute="leading" secondItem="lCc-ql-INv" secondAttribute="leading" id="XJk-le-Uo5"/>
                                         <constraint firstItem="fyM-oE-K79" firstAttribute="leading" secondItem="T5R-uI-ToZ" secondAttribute="leadingMargin" constant="-11" id="tFz-nL-taH"/>
                                         <constraint firstItem="Zfq-jX-zdM" firstAttribute="leading" secondItem="fyM-oE-K79" secondAttribute="trailing" constant="15" id="xup-qf-DH6"/>
                                     </constraints>
@@ -71,6 +82,7 @@
                                 <connections>
                                     <outlet property="imgEvento" destination="fyM-oE-K79" id="mTM-sy-hAN"/>
                                     <outlet property="lblPreco" destination="zi6-LR-Cph" id="dDl-Ob-foK"/>
+                                    <outlet property="lblPrecoLiquido" destination="lCc-ql-INv" id="F0p-lQ-pKh"/>
                                     <outlet property="lblTitle" destination="Zfq-jX-zdM" id="OFb-sV-EwI"/>
                                 </connections>
                             </tableViewCell>

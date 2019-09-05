@@ -15,6 +15,8 @@ extension Double {
         let nf = NumberFormatter()
         nf.numberStyle = .decimal
         nf.locale = Locale(identifier: "pt_BR")
+        nf.minimumFractionDigits = 2
+        nf.maximumFractionDigits = 2
         
         if let precoFinal = nf.string(from: NSNumber(value: self)){
             let precoUI = String(format: "R$ %@", precoFinal)
@@ -24,3 +26,6 @@ extension Double {
     }
     
 }
+
+
+
