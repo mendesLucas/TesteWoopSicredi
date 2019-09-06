@@ -55,6 +55,7 @@
 		1A2D70F6231F0D01003568A4 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
+				1ADB75A92321D9E6007D931B /* Config */,
 				1A2D70F8231F0D34003568A4 /* Format */,
 				1A2D70F7231F0D2A003568A4 /* Service */,
 			);
@@ -108,11 +109,8 @@
 				1A36B1D7231EC40C00910BB4 /* Helper */,
 				1A36B1CF231EACEE00910BB4 /* Model */,
 				1A36B1CE231EACE300910BB4 /* Controller */,
-				1A36B1BE231EA9AE00910BB4 /* AppDelegate.swift */,
 				1A36B1C2231EA9AE00910BB4 /* Main.storyboard */,
 				1A36B1C5231EA9AF00910BB4 /* LaunchScreen.storyboard */,
-				1A36B1C8231EA9AF00910BB4 /* Info.plist */,
-				1A2D710023201C17003568A4 /* Images.xcassets */,
 			);
 			path = TesteWoopSicredi;
 			sourceTree = "<group>";
@@ -143,6 +141,16 @@
 				1A2D70F6231F0D01003568A4 /* Supporting */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		1ADB75A92321D9E6007D931B /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				1A2D710023201C17003568A4 /* Images.xcassets */,
+				1A36B1BE231EA9AE00910BB4 /* AppDelegate.swift */,
+				1A36B1C8231EA9AF00910BB4 /* Info.plist */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
