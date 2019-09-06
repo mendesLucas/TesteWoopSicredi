@@ -111,6 +111,7 @@
 				1A36B1CE231EACE300910BB4 /* Controller */,
 				1A36B1C2231EA9AE00910BB4 /* Main.storyboard */,
 				1A36B1C5231EA9AF00910BB4 /* LaunchScreen.storyboard */,
+				1A36B1C8231EA9AF00910BB4 /* Info.plist */,
 			);
 			path = TesteWoopSicredi;
 			sourceTree = "<group>";
@@ -148,7 +149,6 @@
 			children = (
 				1A2D710023201C17003568A4 /* Images.xcassets */,
 				1A36B1BE231EA9AE00910BB4 /* AppDelegate.swift */,
-				1A36B1C8231EA9AF00910BB4 /* Info.plist */,
 			);
 			path = Config;
 			sourceTree = "<group>";
