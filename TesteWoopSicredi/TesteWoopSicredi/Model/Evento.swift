@@ -8,47 +8,59 @@
 
 import UIKit
 
-class Evento {
+struct Evento: Codable {
     
     var id : String
-    var pessoas : [Pessoa] = []
-    var date :  String
-    var descricao : String
-    var urlImagem : String
-    var longitude : String
-    var latitude : String
-    var valor : Double
-    var titulo : String
-    var cupons : [Cupom] = []
+    var people : [People]
+    var date :  Int
+    var description : String
+    var image : String
+    var price : Double
+    var title : String
+    var cupons : [Cupons]
+    var longitude : ConvertValue
+    var latitude: ConvertValue
     
-    init(json: [String: Any]) {
+    
+    enum CodingKeys: String, CodingKey {
+        case people, date
+        case description
+        case image, longitude, latitude, price, title, id, cupons
+    }
+}
+
+enum ConvertValue: Codable {
+    
+    case double(Double), string(String)
+    
+    init(from decoder: Decoder) throws {
         
-        self.id = json["id"] as? String ?? ""
-        self.date = json["date"] as? String ?? ""
-        self.descricao = json["description"] as? String ?? ""
-        self.urlImagem = json["image"] as? String ?? ""
-        self.latitude = json["latitude"] as? String ?? ""
-        self.longitude = json["longitude"] as? String ?? ""
-        
-        if let price = json["price"]{
-            self.valor = price as! Double
-        }
-        else{
-            self.valor = 0
-        }
-        self.titulo = json["title"] as? String ?? ""
-        
-        let pessoaJson = json["people"] as? Array ?? []
-        for pessoa in (pessoaJson as NSArray) as Array {
-            let pessoaTmp = Pessoa(json: pessoa as! [String : Any])
-            self.pessoas.append(pessoaTmp)
+        if let double = try? decoder.singleValueContainer().decode(Double.self) {
+            self = .double(double)
+            return
         }
         
-        let cuponJson = json["cupons"] as? Array ?? []
-        for cupon in (cuponJson as NSArray) as Array {
-            let cuponTmp = Cupom(json: cupon as! [String : Any])
-            self.cupons.append(cuponTmp)
+        if let string = try? decoder.singleValueContainer().decode(String.self) {
+            
+            self = .double(Double(string)!)
+            return
+        }
+        
+        throw ConvertError.missingValue
+    }
+    
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .double(let x):
+            try container.encode(x)
+        case .string(let x):
+            try container.encode(x)
         }
     }
     
+    enum ConvertError:Error {
+        case missingValue
+    }
 }

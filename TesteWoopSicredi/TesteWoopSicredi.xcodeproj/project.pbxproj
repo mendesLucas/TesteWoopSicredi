@@ -16,10 +16,11 @@
 		1A36B1C4231EA9AE00910BB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A36B1C2231EA9AE00910BB4 /* Main.storyboard */; };
 		1A36B1C7231EA9AF00910BB4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A36B1C5231EA9AF00910BB4 /* LaunchScreen.storyboard */; };
 		1A36B1D1231EADF600910BB4 /* Evento.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A36B1D0231EADF600910BB4 /* Evento.swift */; };
-		1A36B1D3231EAE2100910BB4 /* Pessoa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A36B1D2231EAE2100910BB4 /* Pessoa.swift */; };
-		1A36B1D5231EB4B400910BB4 /* Cupom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A36B1D4231EB4B400910BB4 /* Cupom.swift */; };
+		1A36B1D3231EAE2100910BB4 /* People.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A36B1D2231EAE2100910BB4 /* People.swift */; };
+		1A36B1D5231EB4B400910BB4 /* Cupons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A36B1D4231EB4B400910BB4 /* Cupons.swift */; };
 		1A36B1D9231EC47B00910BB4 /* WebServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A36B1D8231EC47B00910BB4 /* WebServiceHelper.swift */; };
 		1A36B1DB231ED1EE00910BB4 /* ListaEventosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A36B1DA231ED1EE00910BB4 /* ListaEventosTableViewCell.swift */; };
+		1A80B7BC2335C383009D7C9A /* Root.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A80B7BB2335C383009D7C9A /* Root.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,10 +35,11 @@
 		1A36B1C6231EA9AF00910BB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A36B1C8231EA9AF00910BB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A36B1D0231EADF600910BB4 /* Evento.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Evento.swift; sourceTree = "<group>"; };
-		1A36B1D2231EAE2100910BB4 /* Pessoa.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pessoa.swift; sourceTree = "<group>"; };
-		1A36B1D4231EB4B400910BB4 /* Cupom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cupom.swift; sourceTree = "<group>"; };
+		1A36B1D2231EAE2100910BB4 /* People.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = People.swift; sourceTree = "<group>"; };
+		1A36B1D4231EB4B400910BB4 /* Cupons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cupons.swift; sourceTree = "<group>"; };
 		1A36B1D8231EC47B00910BB4 /* WebServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceHelper.swift; sourceTree = "<group>"; };
 		1A36B1DA231ED1EE00910BB4 /* ListaEventosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListaEventosTableViewCell.swift; sourceTree = "<group>"; };
+		1A80B7BB2335C383009D7C9A /* Root.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Root.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,8 +132,8 @@
 			isa = PBXGroup;
 			children = (
 				1A36B1D0231EADF600910BB4 /* Evento.swift */,
-				1A36B1D2231EAE2100910BB4 /* Pessoa.swift */,
-				1A36B1D4231EB4B400910BB4 /* Cupom.swift */,
+				1A36B1D2231EAE2100910BB4 /* People.swift */,
+				1A36B1D4231EB4B400910BB4 /* Cupons.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -149,6 +151,7 @@
 			children = (
 				1A2D710023201C17003568A4 /* Images.xcassets */,
 				1A36B1BE231EA9AE00910BB4 /* AppDelegate.swift */,
+				1A80B7BB2335C383009D7C9A /* Root.plist */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A80B7BC2335C383009D7C9A /* Root.plist in Resources */,
 				1A36B1C4231EA9AE00910BB4 /* Main.storyboard in Resources */,
 				1A2D710123201C18003568A4 /* Images.xcassets in Resources */,
 				1A36B1C7231EA9AF00910BB4 /* LaunchScreen.storyboard in Resources */,
@@ -228,11 +232,11 @@
 				1A2D70FC231F25CF003568A4 /* DetalheEventoViewController.swift in Sources */,
 				1A2D70F5231EE8E4003568A4 /* ListaEventosTableViewController.swift in Sources */,
 				1A36B1D1231EADF600910BB4 /* Evento.swift in Sources */,
-				1A36B1D3231EAE2100910BB4 /* Pessoa.swift in Sources */,
+				1A36B1D3231EAE2100910BB4 /* People.swift in Sources */,
 				1A36B1BF231EA9AE00910BB4 /* AppDelegate.swift in Sources */,
 				1A36B1D9231EC47B00910BB4 /* WebServiceHelper.swift in Sources */,
 				1A36B1DB231ED1EE00910BB4 /* ListaEventosTableViewCell.swift in Sources */,
-				1A36B1D5231EB4B400910BB4 /* Cupom.swift in Sources */,
+				1A36B1D5231EB4B400910BB4 /* Cupons.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

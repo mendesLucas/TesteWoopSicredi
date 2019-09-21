@@ -10,8 +10,14 @@ import UIKit
 
 class WebServiceHelper: NSObject {
     
-    //metodo generico para realizar o GET de serviços
-    static func getServiceUrl(_ service : String) -> AnyObject! {
+    static func getServiceUrlListaEvento( onComplete: @escaping ([Evento]) -> Void) {
+        
+        var nsDictionary: NSDictionary?
+        if let path = Bundle.main.path(forResource: "Root", ofType: "plist") {
+            nsDictionary = NSDictionary(contentsOfFile: path)
+        }
+        
+        let service: String = nsDictionary?.value(forKey: "url") as! String
         
         let escapedURLString = service.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
         
@@ -22,42 +28,76 @@ class WebServiceHelper: NSObject {
         requestURL.addValue("text/x-json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         requestURL.httpMethod = "GET"
         
-        var erro: Error? = nil
-        var responseData: Data?
-        //#gotResp: semáforo para retorno, simula um retorno sincrono
-        var gotResp = false
         
         let task = URLSession.shared.dataTask(with: requestURL as URLRequest) { data, response, error -> Void in
             
-            erro = error
-            responseData = data
-            gotResp = true
+            if error == nil {
+                guard let response = response as? HTTPURLResponse else {return}
+                if response.statusCode == 200 {
+                    guard let data = data else{return}
+                    do {
+                        let eventos = try JSONDecoder().decode([Evento].self, from: data)
+                        onComplete(eventos)
+                        for teste in eventos {
+                            print(teste.description)
+                        }
+                    }
+                    catch{
+                        print(error.localizedDescription)
+                    }
+                }
+            }
         }
         task.resume()
         
-        //aguarda o retorno para liberar
-        while !gotResp {
-        }
-        
-        if (erro == nil){
-            do {
-                if let returnDictionary = try JSONSerialization.jsonObject(with: responseData!, options: JSONSerialization.ReadingOptions.mutableContainers) as? Dictionary<String, Any> {
-                    
-                    return returnDictionary as AnyObject
-                }
-                
-                if let returnArray = try JSONSerialization.jsonObject(with: responseData!, options: JSONSerialization.ReadingOptions.mutableContainers) as? Array<Any> {
-                    
-                    return returnArray as AnyObject
-                }
-            }
-            catch {
-            }
-        }
-        return nil
     }
     
-    static func enviaPost(_ servico : String, pessoa : Pessoa) -> String {
+    static func getServiceUrlEvento(param: String, onComplete: @escaping (Evento) -> Void) {
+        
+        var nsDictionary: NSDictionary?
+        if let path = Bundle.main.path(forResource: "Root", ofType: "plist") {
+            nsDictionary = NSDictionary(contentsOfFile: path)
+        }
+        
+        var service: String = nsDictionary?.value(forKey: "url") as! String
+        
+        if param != "" {
+            service = service + "/\(param)"
+        }
+        
+        let escapedURLString = service.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+        
+        let url = URL(string: escapedURLString!)
+        
+        let requestURL = NSMutableURLRequest(url: url!, cachePolicy: NSURLRequest.CachePolicy.reloadIgnoringLocalCacheData, timeoutInterval: 30)
+        
+        requestURL.addValue("text/x-json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        requestURL.httpMethod = "GET"
+        
+        
+        let task = URLSession.shared.dataTask(with: requestURL as URLRequest) { data, response, error -> Void in
+            
+            if error == nil {
+                guard let response = response as? HTTPURLResponse else {return}
+                if response.statusCode == 200 {
+                    guard let data = data else{return}
+                    do {
+                        let evento = try JSONDecoder().decode(Evento.self, from: data)
+                        onComplete(evento)
+                    }
+                    catch{
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+        }
+        task.resume()
+        
+    }
+    
+    //metodo generico para realizar o GET de serviços
+    
+    static func enviaPost(_ servico : String, pessoa : People) -> String {
         
         var msgRetorno: String = ""
         let urlString = "http://5b840ba5db24a100142dcd8c.mockapi.io/api/checkin"
@@ -113,7 +153,7 @@ class WebServiceHelper: NSObject {
     var msgException: String! = nil
     
     //metodo para mostar Json do Check in
-    static func jsonDataPost(_ pessoa:Pessoa) -> Data! {
+    static func jsonDataPost(_ pessoa:People) -> Data! {
         
         let keys = NSMutableArray()
         let values = NSMutableArray()

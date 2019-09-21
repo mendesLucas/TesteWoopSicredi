@@ -27,8 +27,17 @@ class DetalheEventoViewController: UIViewController, CLLocationManagerDelegate {
         let btnShare = UIBarButtonItem(image: #imageLiteral(resourceName: "shareIcon"), style: .plain, target: self, action: #selector(compartilharTapped))
         //add botão na navigationBar
         navigationItem.rightBarButtonItems = [btnShare]
-
-        carregaTela()
+        
+        if let idEvento = self.eventoSelecionado?.id {
+            
+            WebServiceHelper.getServiceUrlEvento(param: idEvento) { (evento) in
+                DispatchQueue.main.async {
+                    self.eventoSelecionado = evento
+                    self.carregaTela()
+                    self.centralizarLocal()
+                }
+            }
+        }
     }
     
     //Metodo de compartilhar evento
@@ -51,44 +60,41 @@ class DetalheEventoViewController: UIViewController, CLLocationManagerDelegate {
     }
 
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        centralizarLocal()
-    }
-    
     //Metodo carregar campos da tela
     func carregaTela() {
-        
-        if let idEvento = self.eventoSelecionado?.id {
-            let urlString = "http://5b840ba5db24a100142dcd8c.mockapi.io/api/events/" + idEvento
-            if let retornoEventos = WebServiceHelper.getServiceUrl(urlString) {
-                let evento = Evento(json: retornoEventos as! [String : Any])
-                
-                self.lblTitle.text = evento.titulo
-                self.lblPreco.text = evento.valor.priceFormat()
-                
-                //caso tenha desconto, aplica no preço
-                if evento.cupons.count > 0 {
-                    if evento.cupons[0].desconto > 0.0{
-                        self.lblPreco.text = aplicaDesconto(preco: evento.valor, desconto: evento.cupons[0].desconto).priceFormat()
-                    }
-                }
-                
-                //busca imagem do evento com a URL
-                self.loadImageFromUrl(url: evento.urlImagem, view: self.imgEvento)
-                self.txtViewDescricao.text = evento.descricao
-                carregaMap()
-                
-                if let lat : Double = Double(evento.latitude) {
-                    anotacao.coordinate.latitude = lat
-                }
-                if let lon : Double = Double(evento.longitude) {
-                    anotacao.coordinate.longitude = lon
-                }
-                
-                self.viewMap.addAnnotation( anotacao )
+    
+        self.lblTitle.text = self.eventoSelecionado!.title
+        self.lblPreco.text = self.eventoSelecionado!.price.priceFormat()
+
+        //caso tenha desconto, aplica no preço
+        if self.eventoSelecionado!.cupons.count > 0 {
+            if self.eventoSelecionado!.cupons[0].discount > 0.0{
+                self.lblPreco.text = aplicaDesconto(preco: self.eventoSelecionado!.price, desconto: self.eventoSelecionado!.cupons[0].discount).priceFormat()
             }
         }
+
+        //busca imagem do evento com a URL
+        self.loadImageFromUrl(url: self.eventoSelecionado!.image, view: self.imgEvento)
+        self.txtViewDescricao.text = self.eventoSelecionado!.description
+        carregaMap()
+        
+        switch self.eventoSelecionado?.latitude {
+        case .double(let value)?:
+            anotacao.coordinate.latitude = value
+            break
+        default: break
+            
+        }
+        
+        switch self.eventoSelecionado?.longitude {
+        case .double(let value)?:
+            anotacao.coordinate.longitude = value
+            break
+        default: break
+            
+        }
+
+        self.viewMap.addAnnotation( anotacao )
     }
     
     // MARK: - Aplica Desconto
@@ -160,9 +166,9 @@ class DetalheEventoViewController: UIViewController, CLLocationManagerDelegate {
         
         do {
             let urlString = "http://5b840ba5db24a100142dcd8c.mockapi.io/api/events"
-            if self.eventoSelecionado!.pessoas.count > 0 {
+            if self.eventoSelecionado!.people.count > 0 {
                 //chama o metodo de post check in
-                let retorno : String = WebServiceHelper.enviaPost(urlString, pessoa: (self.eventoSelecionado?.pessoas[0])!)
+                let retorno : String = WebServiceHelper.enviaPost(urlString, pessoa: (self.eventoSelecionado?.people[0])!)
                 
                 //caso retorno 200, operação realizada com sucesso.
                 if(retorno == "200"){

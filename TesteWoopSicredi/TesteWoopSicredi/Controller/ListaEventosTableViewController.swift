@@ -23,18 +23,15 @@ class ListaEventosTableViewController: UITableViewController {
     // MARK: - carregaTela
     //Carrega tela com a lista de eventos
     func carregaTela() {
-        
-        let urlString = "http://5b840ba5db24a100142dcd8c.mockapi.io/api/events"
         //busca eventos da API
-        if let retornoEventos = WebServiceHelper.getServiceUrl(urlString) {
-            for evento in (retornoEventos as! NSArray) as Array {
-                //carrega(inicializa) o objeto Evento
-                let eventoTmp = Evento(json: evento as! [String : Any])
-                eventos.append(eventoTmp)
+        WebServiceHelper.getServiceUrlListaEvento{ (eventos) in
+            DispatchQueue.main.async {
+                self.eventos = eventos
+                self.tableView.reloadData()
             }
         }
     }
-
+    
     // MARK: - Table view data source / delegate
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -49,17 +46,17 @@ class ListaEventosTableViewController: UITableViewController {
         
         let evento : Evento = self.eventos[indexPath.row]
         
-        cell.lblTitle?.text = evento.titulo
+        cell.lblTitle?.text = evento.title
         //Formata preço
-        cell.lblPreco?.text = evento.valor.priceFormat()
+        cell.lblPreco?.text = evento.price.priceFormat()
         //caso tenha desconto, aplica no preço
         if evento.cupons.count > 0 {
-            if evento.cupons[0].desconto > 0.0{
+            if evento.cupons[0].discount > 0.0{
                 
-                cell.lblPreco.attributedText = NSAttributedString(string: evento.valor.priceFormat(), attributes:
+                cell.lblPreco.attributedText = NSAttributedString(string: evento.price.priceFormat(), attributes:
                     [NSAttributedStringKey.strikethroughStyle: NSUnderlineStyle.styleSingle.rawValue])
                 
-                cell.lblPrecoLiquido.text = aplicaDesconto(preco: evento.valor, desconto: evento.cupons[0].desconto).priceFormat()
+                cell.lblPrecoLiquido.text = aplicaDesconto(preco: evento.price, desconto: evento.cupons[0].discount).priceFormat()
             }
             else{
                 cell.lblPrecoLiquido.text = ""
@@ -68,7 +65,7 @@ class ListaEventosTableViewController: UITableViewController {
         else{
             cell.lblPrecoLiquido.text = ""
         }
-        cell.loadImageFromUrl(url: evento.urlImagem, view: cell.imgEvento)
+        cell.loadImageFromUrl(url: evento.image, view: cell.imgEvento)
         return cell
     }
     
