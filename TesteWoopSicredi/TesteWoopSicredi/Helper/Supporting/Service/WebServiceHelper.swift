@@ -97,10 +97,17 @@ class WebServiceHelper: NSObject {
     
     //metodo generico para realizar o GET de serviços
     
-    static func enviaPost(_ servico : String, pessoa : People) -> String {
+    static func enviaPost(_ servico : String?, pessoa : People) -> String {
         
         var msgRetorno: String = ""
-        let urlString = "http://5b840ba5db24a100142dcd8c.mockapi.io/api/checkin"
+        
+        var nsDictionary: NSDictionary?
+        if let path = Bundle.main.path(forResource: "Root", ofType: "plist") {
+            nsDictionary = NSDictionary(contentsOfFile: path)
+        }
+        
+        let urlString: String = nsDictionary?.value(forKey: "checkin") as! String
+        
         let url = URL(string: urlString)
         
         let requestURL = NSMutableURLRequest(url: url!, cachePolicy: NSURLRequest.CachePolicy.reloadIgnoringLocalCacheData, timeoutInterval: 30)

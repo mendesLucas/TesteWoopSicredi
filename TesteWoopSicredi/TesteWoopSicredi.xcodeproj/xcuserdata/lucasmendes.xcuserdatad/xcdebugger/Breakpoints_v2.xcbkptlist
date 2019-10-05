@@ -73,12 +73,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TesteWoopSicredi/Controller/ListaEventosTableViewCell.swift"
-            timestampString = "589501188.701835"
+            filePath = "TesteWoopSicredi/Controller/DetalheEventoViewController.swift"
+            timestampString = "591990467.703351"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55">
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "setupViewModel()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

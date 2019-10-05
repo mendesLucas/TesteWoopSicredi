@@ -25,26 +25,25 @@ class ListaEventosTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    //Busca imagens com URL
-    func loadImageFromUrl(url: String, view: UIImageView){
-        if view.image == nil {
+    // MARK: - PrepareCell
+    func prepareCell(with evento: Evento){
         
-            let url = NSURL(string: url)!
-            
-            let task = URLSession.shared.dataTask(with: url as URL) { (responseData, responseUrl, error) -> Void in
-                if let data = responseData{
-                    
-                    DispatchQueue.main.async() {
-                        self.imgEvento.image = UIImage(data: data)
-                        self.imgEvento.layer.cornerRadius = 30.0
-                        self.imgEvento.clipsToBounds = true
-                    }
-                }
+        let eventoCellVM = EventoCellViewModel(evento: evento)
+        self.lblTitle?.text = eventoCellVM.title
+
+        self.lblPreco?.text = eventoCellVM.preco
+        self.lblPrecoLiquido.text = eventoCellVM.precoLiquido
+        
+        self.imgEvento.imageFromServerURL(evento.image, placeHolder: nil)
+        
+        if evento.cupons.count > 0 {
+            if evento.cupons[0].discount > 0.0{
+                self.lblPreco.attributedText = NSAttributedString(string: eventoCellVM.preco, attributes:
+                    [NSAttributedStringKey.strikethroughStyle: NSUnderlineStyle.styleSingle.rawValue])
             }
-            task.resume()
         }
     }
-    
+
     //limpa o cash de imagens da construção da TableView.
     override func prepareForReuse() {
         super.prepareForReuse()

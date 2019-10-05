@@ -21,6 +21,9 @@
 		1A36B1D9231EC47B00910BB4 /* WebServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A36B1D8231EC47B00910BB4 /* WebServiceHelper.swift */; };
 		1A36B1DB231ED1EE00910BB4 /* ListaEventosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A36B1DA231ED1EE00910BB4 /* ListaEventosTableViewCell.swift */; };
 		1A80B7BC2335C383009D7C9A /* Root.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A80B7BB2335C383009D7C9A /* Root.plist */; };
+		1A80B7BF23369B2A009D7C9A /* ListaEventosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A80B7BE23369B2A009D7C9A /* ListaEventosViewModel.swift */; };
+		1AD2C1642348C8A600D8DC75 /* EventoCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD2C1632348C8A600D8DC75 /* EventoCellViewModel.swift */; };
+		1AD2C1692348E8E100D8DC75 /* DetalheEventoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD2C1682348E8E100D8DC75 /* DetalheEventoViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		1A36B1D8231EC47B00910BB4 /* WebServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceHelper.swift; sourceTree = "<group>"; };
 		1A36B1DA231ED1EE00910BB4 /* ListaEventosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListaEventosTableViewCell.swift; sourceTree = "<group>"; };
 		1A80B7BB2335C383009D7C9A /* Root.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Root.plist; sourceTree = "<group>"; };
+		1A80B7BE23369B2A009D7C9A /* ListaEventosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListaEventosViewModel.swift; sourceTree = "<group>"; };
+		1AD2C1632348C8A600D8DC75 /* EventoCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoCellViewModel.swift; sourceTree = "<group>"; };
+		1AD2C1682348E8E100D8DC75 /* DetalheEventoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetalheEventoViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +116,7 @@
 			children = (
 				1A36B1D7231EC40C00910BB4 /* Helper */,
 				1A36B1CF231EACEE00910BB4 /* Model */,
+				1A80B7BD23369AE6009D7C9A /* ViewModel */,
 				1A36B1CE231EACE300910BB4 /* Controller */,
 				1A36B1C2231EA9AE00910BB4 /* Main.storyboard */,
 				1A36B1C5231EA9AF00910BB4 /* LaunchScreen.storyboard */,
@@ -144,6 +151,16 @@
 				1A2D70F6231F0D01003568A4 /* Supporting */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		1A80B7BD23369AE6009D7C9A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1A80B7BE23369B2A009D7C9A /* ListaEventosViewModel.swift */,
+				1AD2C1632348C8A600D8DC75 /* EventoCellViewModel.swift */,
+				1AD2C1682348E8E100D8DC75 /* DetalheEventoViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		1ADB75A92321D9E6007D931B /* Config */ = {
@@ -228,13 +245,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AD2C1642348C8A600D8DC75 /* EventoCellViewModel.swift in Sources */,
 				1A2D70FA231F0DFA003568A4 /* Format.swift in Sources */,
 				1A2D70FC231F25CF003568A4 /* DetalheEventoViewController.swift in Sources */,
 				1A2D70F5231EE8E4003568A4 /* ListaEventosTableViewController.swift in Sources */,
 				1A36B1D1231EADF600910BB4 /* Evento.swift in Sources */,
 				1A36B1D3231EAE2100910BB4 /* People.swift in Sources */,
+				1A80B7BF23369B2A009D7C9A /* ListaEventosViewModel.swift in Sources */,
 				1A36B1BF231EA9AE00910BB4 /* AppDelegate.swift in Sources */,
 				1A36B1D9231EC47B00910BB4 /* WebServiceHelper.swift in Sources */,
+				1AD2C1692348E8E100D8DC75 /* DetalheEventoViewModel.swift in Sources */,
 				1A36B1DB231ED1EE00910BB4 /* ListaEventosTableViewCell.swift in Sources */,
 				1A36B1D5231EB4B400910BB4 /* Cupons.swift in Sources */,
 			);
